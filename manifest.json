@@ -1,15 +1,27 @@
 {
-  "manifest_version": 3,
-  "name": "Hello Extension",
-  "version": "1.0",
-  "permissions": ["activeTab"],
-  "action": {
-    "default_popup": "popup.html"
-  },
-	"content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
-    }
-  ]
+    "manifest_version": 3,
+    "name": "ChatGPT Copy To Markdown",
+    "description": "Tool to quickly copy ChatGPT content to markdown editor",
+    "version": "0.0.1",
+    "icons": {
+        "16": "logo/logo-16.png",
+        "48": "logo/logo-48.png",
+        "128": "logo/logo-128.png"
+    },
+    "options_page": "settings/settings.html",
+    "action": {
+        "default_title": "ChatGPTCopyToMarkdown",
+        "default_popup": "popup/popup.html"
+    },
+    "permissions": [],
+    "host_permissions": [
+        "*://*/*"
+    ],
+    "background": {
+        "service_worker": "service-worker.js"
+    },
+    "content_scripts": [{
+        "js": ["foreground.js"],
+        "matches": ["https://github.com/*"]
+    }]
 }
